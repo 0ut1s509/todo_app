@@ -10,6 +10,7 @@ from django.contrib.auth.views import (
 
 urlpatterns=[
     path('login/', views.MyLoginView.as_view(),name='login'),
+    path('profile/', views.MyProfile.as_view(),name='profile'),
     path('logout/', LogoutView.as_view(next_page='login'),name='logout'),
     path('register/', views.RegisterView.as_view(),name='register'),
     path('password-reset/', PasswordResetView.as_view(template_name='users/password_reset.html',html_email_template_name='users/password_reset_email.html'),name='password-reset'),
