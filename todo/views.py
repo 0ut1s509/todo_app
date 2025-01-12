@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView,DeleteView
 from .models import Task
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -37,3 +37,12 @@ class TaskUpdate(UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "The task was updated successfully.")
         return super(TaskUpdate,self).form_valid(form)
+
+class TaskDelete(DeleteView):
+    model = Task
+    context_object_name = 'task'
+    success_url = reverse_lazy('tasks')
+    
+    def form_valid(self, form):
+        messages.success(self.request, "The task was deleted successfully.")
+        return super(TaskDelete,self).form_valid(form)
